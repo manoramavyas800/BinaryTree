@@ -1,0 +1,60 @@
+package BinaryTrees;
+
+  class Node{
+    int value;
+    Node left;
+    Node right;
+    Node (int value){
+        this.value=value;
+    }
+}
+public class DFSTraversal {
+    static void preOrder(Node root) {
+        if(root==null)return;
+        //root,left, right
+        System.out.print(root.value+" ");
+       preOrder(root.left);
+       preOrder(root.right);
+    }
+    static void inOrder(Node root) {
+        if(root==null)return;
+        //left , root , right
+       inOrder(root.left);
+       System.out.print(root.value+" ");
+       inOrder(root.right);
+    }
+    static void postOrder(Node root) {
+        if(root==null)return;
+        //left , right, root
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.value+" ");
+
+    }
+
+
+    public static void main(String[] args) {
+        Node a = new Node(2);
+        Node b = new Node(3);
+        Node c = new Node(4);
+        Node d = new Node(5);
+        Node e = new Node(6);
+        Node f = new Node(7);
+        Node g = new Node(8);
+        Node h = new Node(9);
+        a.left=b;
+        a.right=c;
+        b.left=d;
+        b.right=e;
+        c.left=f;
+        c.right=g;
+        d.left=h;
+        inOrder(a);
+        System.out.println();
+        postOrder(a);
+        System.out.println();
+        preOrder(a);
+    }
+
+
+}
