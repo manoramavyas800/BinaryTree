@@ -1,0 +1,70 @@
+package BinaryTrees;
+
+     class Quard {
+        int max;
+        int min;
+        int size;
+        int sum;
+
+        Quard(int max, int min, int size, int sum) {
+            this.max = max;
+            this.min = min;
+            this.size = size;
+            this.sum = sum;
+        }
+
+        void display() {
+            System.out.print(max+ " "+ min+ " "+ size+ " "+sum);
+        }
+    }
+ class Node3 {
+    int val;
+    Node3 left;
+    Node3 right;
+
+    Node3(int val) {
+        this.val = val;
+    }
+}
+    public class MaxMinSumSize {
+        public static Quard maxMinSumSize(Node3 root) {
+            if (root == null) return new Quard(Integer.MIN_VALUE, Integer.MAX_VALUE, 0, 0);
+            Quard lst = maxMinSumSize(root.left);
+            Quard rst = maxMinSumSize(root.right);
+            int max = Math.max(root.val, Math.max(lst.max, rst.max));
+            int min = Math.min(root.val, Math.min(lst.min, rst.min));
+            int sum = root.val + lst.sum + rst.sum;
+            int size = 1 + lst.size + rst.size ;
+            return new Quard(max, min, size, sum);
+        }
+
+        public static void main(String[] args) {
+            /*        1
+                 /         \
+                2            3
+              /   \        /   \
+             4     5      6     7
+           /  \   /  \   /  \   / \
+          8    9
+             */
+            Node3 a = new Node3(1);
+            Node3 b = new Node3(2);
+            Node3 c = new Node3(3);
+            Node3 d = new Node3(4);
+            Node3 e = new Node3(5);
+            Node3 f = new Node3(6);
+            Node3 g = new Node3(7);
+            Node3 h = new Node3(8);
+            Node3 i = new Node3(9);
+            a.left = b;
+            a.right = c;
+            b.left = d;
+            b.right = e;
+            c.left = f;
+            c.right = g;
+            d.left = h;
+            d.right = i;
+            Quard res=maxMinSumSize(a);
+            res.display();
+    }
+}
